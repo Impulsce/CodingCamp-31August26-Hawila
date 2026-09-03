@@ -1,0 +1,560 @@
+/* ============================================================
+   To-Do Life Dashboard — style.css
+   All component styles use only the CSS custom properties
+   defined here so a single attribute change on <html>
+   repaints the entire page instantly.
+   ============================================================ */
+
+/* ── 1. CSS Custom Properties (Design Tokens) ────────────── */
+
+:root {
+  /* Light theme — defaults */
+  --bg:             #f5f5f5;
+  --surface:        #ffffff;
+  --text-primary:   #1a1a1a;
+  --text-secondary: #555555;
+  --accent:         #4f46e5;
+  --border:         #e0e0e0;
+
+  /* Additional tokens */
+  --accent-hover:   #4338ca;
+  --danger:         #dc2626;
+  --danger-hover:   #b91c1c;
+  --success:        #16a34a;
+  --radius:         0.5rem;
+  --radius-sm:      0.25rem;
+  --shadow:         0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --transition:     150ms ease;
+}
+
+[data-theme="dark"] {
+  /* Dark theme overrides */
+  --bg:             #0f0f0f;
+  --surface:        #1e1e1e;
+  --text-primary:   #f0f0f0;
+  --text-secondary: #aaaaaa;
+  --accent:         #818cf8;
+  --border:         #333333;
+
+  --accent-hover:   #6366f1;
+  --danger:         #f87171;
+  --danger-hover:   #ef4444;
+  --success:        #4ade80;
+  --shadow:         0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ── 2. Reset & Base ─────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Smooth theme transitions */
+  color-scheme: light dark;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;       /* Requirement 18.3 — minimum 14 px */
+  line-height: 1.6;
+  min-height: 100dvh;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+/* Screen-reader-only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ── 3. Typography ───────────────────────────────────────── */
+
+h1, h2, h3 {
+  font-size: 1.125rem; /* ≥ 16 px — Requirement 18.3 */
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ── 4. Header ───────────────────────────────────────────── */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.app-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+/* ── 5. Main Layout (Desktop-first grid) ─────────────────── */
+
+.app-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Timer + Quick Links sit side-by-side on desktop */
+.middle-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+/* Responsive — stack everything below 768 px (Requirement 18.2) */
+@media (max-width: 767px) {
+  .middle-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── 6. Section Card ─────────────────────────────────────── */
+
+section {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  transition: background-color var(--transition), border-color var(--transition);
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+}
+
+/* ── 7. Buttons ──────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.45rem 1rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition), opacity var(--transition);
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--border);
+}
+
+.btn-danger {
+  background-color: transparent;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  padding: 0.3rem 0.6rem;
+}
+
+.btn-danger:hover {
+  background-color: var(--danger);
+  color: #ffffff;
+}
+
+.btn-icon {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-icon:hover {
+  background-color: var(--border);
+}
+
+/* ── 8. Inputs ───────────────────────────────────────────── */
+
+.input,
+.select {
+  display: block;
+  width: 100%;
+  padding: 0.45rem 0.75rem;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.input:focus-visible,
+.select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── 9. Inline Field Errors ──────────────────────────────── */
+
+.field-error {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--danger);
+  margin-top: 0.25rem;
+}
+
+/* ── 10. Greeting Section ────────────────────────────────── */
+
+#greeting-section {
+  text-align: center;
+}
+
+.greeting-clock {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.greeting-date {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.greeting-message {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.name-form {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.name-form .input {
+  width: auto;
+  flex: 1 1 180px;
+  max-width: 260px;
+}
+
+/* ── 11. Timer Section ───────────────────────────────────── */
+
+.timer-display {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  margin: 0.5rem 0;
+}
+
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.timer-complete-cue {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: color-mix(in srgb, var(--success) 15%, transparent);
+  border: 1px solid var(--success);
+  border-radius: var(--radius-sm);
+  color: var(--success);
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.9375rem;
+}
+
+/* ── 12. Quick Links Section ─────────────────────────────── */
+
+.link-form .form-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.link-form .form-field {
+  flex: 1 1 130px;
+  min-width: 0;
+}
+
+.links-list {
+  list-style: none;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.links-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.45rem 0.75rem;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition);
+}
+
+.links-list li:hover {
+  background-color: color-mix(in srgb, var(--accent) 8%, var(--bg));
+}
+
+.links-list a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.links-list a:hover {
+  text-decoration: underline;
+}
+
+.links-list a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── 13. Task Section ────────────────────────────────────── */
+
+.task-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.task-header .section-title {
+  margin-bottom: 0;
+}
+
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sort-control .select {
+  width: auto;
+}
+
+.task-add-form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.task-add-form .input-row {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.task-add-form .input {
+  flex: 1;
+}
+
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+/* Individual task item */
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.6rem 0.75rem;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition);
+}
+
+.task-item:hover {
+  background-color: color-mix(in srgb, var(--accent) 6%, var(--bg));
+}
+
+/* Checkbox */
+.task-item input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  cursor: pointer;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+
+.task-item input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Task description */
+.task-description {
+  flex: 1;
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+/* Completed task visual style */
+.task-item.completed .task-description {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+/* Inline edit input (revealed when editing) */
+.task-edit-input {
+  flex: 1;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.9375rem;
+  background-color: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+}
+
+.task-edit-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Task action buttons */
+.task-actions {
+  display: flex;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+
+.task-actions .btn {
+  padding: 0.25rem 0.55rem;
+  font-size: 0.8125rem;
+}
+
+/* ── 14. Responsive — 320 px → 767 px (Requirement 18.1–18.2) ── */
+
+@media (max-width: 767px) {
+  body {
+    font-size: 14px; /* Enforce minimum */
+  }
+
+  .app-main {
+    padding: 1rem 0.75rem;
+    gap: 1rem;
+  }
+
+  .greeting-clock {
+    font-size: 2.25rem;
+  }
+
+  .timer-display {
+    font-size: 3rem;
+  }
+
+  .link-form .form-row {
+    flex-direction: column;
+  }
+
+  .link-form .form-field {
+    flex: 1 1 auto;
+  }
+
+  .task-add-form {
+    flex-direction: column;
+  }
+
+  .task-add-form .input-row {
+    flex-wrap: wrap;
+  }
+}

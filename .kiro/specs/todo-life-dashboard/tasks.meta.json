@@ -1,0 +1,436 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1. Scaffold the three static files with base structure": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442020035
+      },
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442055813
+      },
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442283425
+      }
+    ],
+    "2.1 Implement `StorageHelper.get(key, fallback)` — wrap `localStorage.getItem` + `JSON.parse` in a `try/catch`; return `fallback` when the key is absent or the stored value is corrupted JSON": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442020876
+      },
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442061845
+      },
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442289330
+      }
+    ],
+    "2.2 Implement `StorageHelper.set(key, value)` — wrap `localStorage.setItem` + `JSON.stringify` in a `try/catch`; log a console warning on `QuotaExceededError` without throwing": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442021695
+      },
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442067742
+      },
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442294655
+      }
+    ],
+    "2.3 Write property test for `StorageHelper` round-trip (tasks)": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442022092
+      },
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442300445
+      }
+    ],
+    "2.4 Write property test for `StorageHelper` round-trip (links)": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442022655
+      },
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442306266
+      }
+    ],
+    "3.1 Implement `ThemeModule.apply(theme)` — set `document.documentElement.setAttribute('data-theme', theme)`; store the active theme value in a module-local variable": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442022981
+      },
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442313815
+      }
+    ],
+    "3.2 Implement `ThemeModule.toggle()` — flip between `\"light\"` and `\"dark\"`, call `apply`, then `StorageHelper.set('tld_theme', …)`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442023742
+      },
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442319917
+      }
+    ],
+    "3.3 Implement `ThemeModule.init()` — call `StorageHelper.get('tld_theme', 'light')`; call `apply` with the result; bind the theme toggle button's click event to `toggle()`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442024563
+      }
+    ],
+    "3.4 Wire `ThemeModule.init()` as the first call inside `init()` so the theme is applied before any other rendering to prevent a flash-of-unstyled-content": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442024782
+      }
+    ],
+    "4.1 Implement `getGreetingPrefix(hour)` as a pure function — map hour ranges to `\"Good Morning\"` (5–11), `\"Good Afternoon\"` (12–17), `\"Good Evening\"` (18–21), `\"Good Night\"` (all others)": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442025159
+      },
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442325674
+      }
+    ],
+    "4.2 Write property test for `getGreetingPrefix`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442025534
+      }
+    ],
+    "4.3 Implement `GreetingModule.tick()` — read `new Date()`, format time as `HH:MM:SS`, format date as `\"Day, DD Month YYYY\"`, call `getGreetingPrefix(now.getHours())`, update the relevant DOM elements": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442025875
+      }
+    ],
+    "4.4 Implement `GreetingModule.saveName(name)` — validate the trimmed input is non-empty; call `StorageHelper.set('tld_name', name)`; re-render the greeting": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442026585
+      }
+    ],
+    "4.5 Implement `GreetingModule.init()` — read stored name via `StorageHelper.get('tld_name', 'Friend')`; render initial greeting; start `setInterval(tick, 1000)`; bind the name input submit event to `saveName`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442026880
+      }
+    ],
+    "5.1 Implement `TimerModule.renderTime(seconds)` — format integer seconds as `\"MM:SS\"` with zero-padded minutes and seconds; return the string": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442027245
+      },
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442330801
+      }
+    ],
+    "5.2 Write property test for `renderTime`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442027827
+      }
+    ],
+    "5.3 Implement `TimerModule.start()` — guard with `if (this.state.running) return`; set `running = true`; start `setInterval(tick, 1000)`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442028252
+      }
+    ],
+    "5.4 Implement `TimerModule.stop()` — clear the interval; set `running = false`; retain `remaining`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442028651
+      }
+    ],
+    "5.5 Implement `TimerModule.reset()` — call `stop()`; set `remaining = totalSeconds`; call `renderTime`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442029015
+      }
+    ],
+    "5.6 Implement `TimerModule.tick()` — decrement `remaining`; call `renderTime`; if `remaining <= 0` call `complete()`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442029492
+      }
+    ],
+    "5.7 Implement `TimerModule.complete()` — call `stop()`; attempt `audio.play()` and catch any rejection silently; show the visual completion cue element": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442029907
+      }
+    ],
+    "5.8 Implement `TimerModule.init()` — initialize in-memory state `{ totalSeconds: 1500, remaining: 1500, running: false, intervalId: null }`; render `25:00`; bind Start, Stop, and Reset button click events": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442030264
+      }
+    ],
+    "6. Checkpoint — StorageHelper, ThemeModule, GreetingModule, and TimerModule complete": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442030864
+      }
+    ],
+    "7.1 Implement `TaskModule.loadTasks()` — return `StorageHelper.get('tld_tasks', [])`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442031138
+      }
+    ],
+    "7.2 Implement `TaskModule.saveTasks(tasks)` — call `StorageHelper.set('tld_tasks', tasks)`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442031450
+      }
+    ],
+    "7.3 Implement `TaskModule.addTask(desc)` — trim input; validate non-empty (show inline error if blank); build a `Task` object using `makeId('task')` and `Date.now()`; push to the in-memory array; call `saveTasks`; call `renderTasks`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442031706
+      }
+    ],
+    "7.4 Write property test for `addTask` growth": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442032101
+      }
+    ],
+    "7.5 Write property test for whitespace rejection": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442032427
+      }
+    ],
+    "7.6 Implement `TaskModule.editTask(id, newDesc)` — validate non-empty (show inline error if blank); mutate a copy of the array; call `saveTasks`; call `renderTasks`; cancel edit leaves storage unchanged": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442032949
+      }
+    ],
+    "7.7 Implement `TaskModule.deleteTask(id)` — filter the array by id; call `saveTasks`; call `renderTasks`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442033234
+      }
+    ],
+    "7.8 Implement `TaskModule.toggleTask(id)` — flip the `completed` flag of the matching task; call `saveTasks`; call `renderTasks`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442033513
+      }
+    ],
+    "7.9 Write property test for `toggleTask` involution": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442034038
+      }
+    ],
+    "8.1 Implement `sortTasks(tasks, order)` as a pure function — shallow-copy the input with `[...tasks]`; apply the correct comparator from the six `SortOrder` values; return the new sorted array without mutating the original": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442034417
+      }
+    ],
+    "8.2 Write property test for sort purity": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442035090
+      }
+    ],
+    "8.3 Write property test for sort completeness": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442035525
+      }
+    ],
+    "8.4 Implement `TaskModule.renderTasks(tasks)` — clear the list DOM container; for each task in `sortTasks(tasks, currentOrder)`, create and append an element with checkbox, description text, edit button, and delete button; apply completed visual style when `task.completed` is true": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442035899
+      }
+    ],
+    "8.5 Implement sort control binding — read `StorageHelper.get('tld_sort', 'newest')`; set the dropdown to the stored value; bind the `change` event to update `currentOrder`, call `saveTasks` (to persist sort pref via `StorageHelper.set('tld_sort', …)`), and re-render": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442036222
+      }
+    ],
+    "8.6 Implement `TaskModule.init()` — call `loadTasks()`; call `renderTasks`; bind the add-task form submit; bind the sort dropdown; wire edit and delete button events via delegation": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442036512
+      }
+    ],
+    "9.1 Implement `isValidUrl(url)` as a pure function — return `true` only if `url.startsWith('http://') || url.startsWith('https://')`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442036781
+      }
+    ],
+    "9.2 Write property test for URL validation": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442037176
+      }
+    ],
+    "9.3 Implement `QuickLinksModule.loadLinks()` / `saveLinks(links)` — mirror the task helpers using key `tld_links`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442037479
+      }
+    ],
+    "9.4 Implement `QuickLinksModule.addLink(label, url)` — validate label non-empty and url non-empty (show per-field inline error if blank); validate url with `isValidUrl` (show scheme error if invalid); build a `Link` object with `makeId('link')`; push to array; call `saveLinks`; call `renderLinks`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442037714
+      }
+    ],
+    "9.5 Implement `QuickLinksModule.deleteLink(id)` — filter array; call `saveLinks`; call `renderLinks`": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442037933
+      }
+    ],
+    "9.6 Implement `QuickLinksModule.renderLinks(links)` — clear the links DOM container; append one `<a>` element per link with `href`, `target=\"_blank\"`, `rel=\"noopener noreferrer\"`, and a delete button": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442038195
+      }
+    ],
+    "9.7 Implement `QuickLinksModule.init()` — call `loadLinks()`; call `renderLinks`; bind the add-link form submit; wire delete button events via delegation": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442038482
+      }
+    ],
+    "10. Checkpoint — TaskModule and QuickLinksModule complete": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442039133
+      }
+    ],
+    "11.1 Add CSS grid layout to the main container — desktop (≥ 768px): two-column grid with the timer and quick-links side by side; task list spanning full width below": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442039617
+      }
+    ],
+    "11.2 Add a `@media (max-width: 767px)` breakpoint that collapses to a single-column flex/grid so all sections stack vertically without horizontal overflow": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442039950
+      }
+    ],
+    "11.3 Set global typography minimums — `body { font-size: 14px }` and headings `≥ 16px`; verify layout renders correctly at 320px and 1920px viewport widths": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442040307
+      }
+    ],
+    "12.1 Add `aria-label` or `aria-labelledby` attributes to all interactive controls (theme toggle, name input, timer buttons, task add/edit/delete, sort dropdown, link add/delete); add `role=\"list\"` and `role=\"listitem\"` where semantic list elements are not used": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442041055
+      }
+    ],
+    "12.2 Add visible `:focus-visible` outline styles in `style.css` using the `--accent` custom property so keyboard focus is always clearly visible; ensure no outline is suppressed with `outline: none` without a replacement": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442041373
+      }
+    ],
+    "12.3 Verify WCAG 2.1 AA color contrast for `--text-primary` on `--bg` and `--surface` in both light and dark themes; adjust values if needed": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442041656
+      }
+    ],
+    "13. Final checkpoint — full integration": [
+      {
+        "executionId": "c8849b34-6011-49b2-9237-fec348beb359",
+        "chatSessionId": "sess_b69b438e-335f-478e-acf6-49d09224665e",
+        "timestamp": 1788442041955
+      }
+    ]
+  }
+}

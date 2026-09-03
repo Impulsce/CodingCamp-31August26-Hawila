@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do Life Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="app-header">
+    <span class="app-title">Life Dashboard</span>
+    <button
+      id="theme-toggle"
+      class="btn btn-icon"
+      aria-label="Toggle light/dark theme"
+      title="Toggle theme"
+    >🌙</button>
+  </header>
+
+  <main class="app-main">
+
+    <!-- ===== GREETING SECTION ===== -->
+    <section id="greeting-section" aria-labelledby="greeting-heading">
+      <h2 id="greeting-heading" class="section-title sr-only">Greeting</h2>
+
+      <div class="greeting-clock">
+        <span id="clock-time" aria-live="polite" aria-label="Current time">00:00:00</span>
+      </div>
+
+      <div class="greeting-date">
+        <span id="clock-date" aria-live="polite" aria-label="Current date">Monday, 1 January 2025</span>
+      </div>
+
+      <div class="greeting-message">
+        <span id="greeting-prefix">Good Morning</span>,
+        <span id="greeting-name">Friend</span>!
+      </div>
+
+      <form id="name-form" class="name-form" aria-label="Set your name">
+        <label for="name-input" class="sr-only">Your name</label>
+        <input
+          type="text"
+          id="name-input"
+          class="input"
+          placeholder="Enter your name…"
+          aria-label="Enter your name"
+          maxlength="64"
+        />
+        <button type="submit" class="btn btn-primary" aria-label="Save name">Save</button>
+      </form>
+    </section>
+
+    <!-- ===== MIDDLE ROW: Timer + Quick Links ===== -->
+    <div class="middle-row">
+
+      <!-- ===== TIMER SECTION ===== -->
+      <section id="timer-section" aria-labelledby="timer-heading">
+        <h2 id="timer-heading" class="section-title">Focus Timer</h2>
+
+        <div
+          id="timer-display"
+          class="timer-display"
+          role="timer"
+          aria-live="off"
+          aria-label="Timer display"
+        >25:00</div>
+
+        <div class="timer-controls">
+          <button id="timer-start" class="btn btn-primary" aria-label="Start timer">Start</button>
+          <button id="timer-stop"  class="btn btn-secondary" aria-label="Stop timer">Stop</button>
+          <button id="timer-reset" class="btn btn-secondary" aria-label="Reset timer">Reset</button>
+        </div>
+
+        <!-- Visible completion cue — hidden until timer reaches 00:00 -->
+        <div
+          id="timer-complete-cue"
+          class="timer-complete-cue hidden"
+          role="alert"
+          aria-live="assertive"
+          aria-label="Focus session complete"
+        >
+          🎉 Session complete! Time for a break.
+        </div>
+
+        <!-- Audio alert played on completion -->
+        <audio id="timer-audio" preload="none" aria-hidden="true">
+          <!--
+            A short beep data-URI so the dashboard works from file:// with no
+            external assets. Browsers that block autoplay will silently fail;
+            the visual cue above is always shown regardless.
+          -->
+          <source
+            src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAA
+              ABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVg
+              nr2yoG1DMDBqot3CpHtKNjCBtvLVuIlWQjSDw/romWc7Mmq9/MCxj19
+              AOG/D7cKibjtGgcLHtJGPsKpTI0F1pLBzaENAOHDB7wqkZTlFgMTStK
+              B3aURAOHDB7wpjXTtFgM7VtKB3aURAO..."
+            type="audio/wav"
+          />
+        </audio>
+      </section>
+
+      <!-- ===== QUICK LINKS SECTION ===== -->
+      <section id="links-section" aria-labelledby="links-heading">
+        <h2 id="links-heading" class="section-title">Quick Links</h2>
+
+        <form id="link-form" class="link-form" aria-label="Add a quick link">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="link-label-input" class="sr-only">Link label</label>
+              <input
+                type="text"
+                id="link-label-input"
+                class="input"
+                placeholder="Label (e.g. GitHub)"
+                aria-label="Link label"
+                maxlength="64"
+              />
+              <span id="link-label-error" class="field-error hidden" role="alert"></span>
+            </div>
+            <div class="form-field">
+              <label for="link-url-input" class="sr-only">Link URL</label>
+              <input
+                type="url"
+                id="link-url-input"
+                class="input"
+                placeholder="https://example.com"
+                aria-label="Link URL"
+                maxlength="2048"
+              />
+              <span id="link-url-error" class="field-error hidden" role="alert"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" aria-label="Add link">Add</button>
+          </div>
+        </form>
+
+        <ul
+          id="links-list"
+          class="links-list"
+          role="list"
+          aria-label="Quick links"
+          aria-live="polite"
+        ></ul>
+      </section>
+
+    </div><!-- /.middle-row -->
+
+    <!-- ===== TASK SECTION ===== -->
+    <section id="task-section" aria-labelledby="task-heading">
+      <div class="task-header">
+        <h2 id="task-heading" class="section-title">To-Do List</h2>
+
+        <div class="sort-control">
+          <label for="sort-select" class="sr-only">Sort tasks</label>
+          <select id="sort-select" class="select" aria-label="Sort tasks">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="az">A – Z</option>
+            <option value="za">Z – A</option>
+            <option value="incomplete">Incomplete first</option>
+            <option value="complete">Complete first</option>
+          </select>
+        </div>
+      </div>
+
+      <form id="task-form" class="task-add-form" aria-label="Add a new task">
+        <label for="task-input" class="sr-only">Task description</label>
+        <input
+          type="text"
+          id="task-input"
+          class="input"
+          placeholder="Add a new task…"
+          aria-label="New task description"
+          maxlength="256"
+        />
+        <span id="task-input-error" class="field-error hidden" role="alert"></span>
+        <button type="submit" class="btn btn-primary" aria-label="Add task">Add</button>
+      </form>
+
+      <ul
+        id="task-list"
+        class="task-list"
+        role="list"
+        aria-label="Task list"
+        aria-live="polite"
+      ></ul>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
