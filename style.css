@@ -28,23 +28,25 @@
 }
 
 [data-theme="colorblind"] {
-  /* Color-blind friendly mode
-     Uses blue (#0077BB) + orange (#EE7733) palette — safe for
-     deuteranopia, protanopia, and tritanopia.
-     Avoids red/green combinations entirely.
-     High contrast ratios maintained on all backgrounds. */
-  --bg:             #f7f7f7;
-  --surface:        #ffffff;
-  --text-primary:   #111111;
-  --text-secondary: #555555;
-  --accent:         #0077BB;
-  --border:         #cccccc;
+  /* Color-blind friendly mode — visually distinct from standard.
+     Warm cream background + teal accent + orange danger.
+     Safe for deuteranopia, protanopia, and tritanopia.
+     No red/green used anywhere. WCAG AA contrast maintained. */
+  --bg:             #fdf6e3;
+  --surface:        #fffbf0;
+  --text-primary:   #1a1a0e;
+  --text-secondary: #5c5c40;
+  --accent:         #006d77;
+  --border:         #d4c89a;
 
-  --accent-hover:   #005f99;
-  --danger:         #EE7733;
-  --danger-hover:   #cc5500;
-  --success:        #009988;
-  --shadow:         0 1px 3px rgba(0, 0, 0, 0.10), 0 1px 2px rgba(0, 0, 0, 0.08);
+  --accent-hover:   #004f57;
+  --danger:         #e07500;
+  --danger-hover:   #b85e00;
+  --success:        #007090;
+  --radius:         0.5rem;
+  --radius-sm:      0.25rem;
+  --shadow:         0 1px 4px rgba(100, 80, 0, 0.12), 0 1px 2px rgba(100, 80, 0, 0.08);
+  --transition:     150ms ease;
 }
 
 /* ── 2. Reset & Base ─────────────────────────────────────── */
@@ -70,7 +72,7 @@ body {
   font-size: 14px;       /* Requirement 18.3 — minimum 14 px */
   line-height: 1.6;
   min-height: 100dvh;
-  transition: background-color var(--transition), color var(--transition);
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
 /* Screen-reader-only utility */
