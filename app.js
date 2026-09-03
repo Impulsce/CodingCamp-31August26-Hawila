@@ -36,23 +36,33 @@ const StorageHelper = {
 /* ── ThemeModule ───────────────────────────────────────────── */
 
 const ThemeModule = {
-  _current: 'light',
+  _current: 'standard',
 
   apply(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     this._current = theme;
     const btn = document.getElementById('theme-toggle');
-    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    if (btn) {
+      if (theme === 'colorblind') {
+        btn.textContent = '👁 Standard';
+        btn.title = 'Switch to standard mode';
+        btn.setAttribute('aria-label', 'Switch to standard mode');
+      } else {
+        btn.textContent = '👁 Color-blind';
+        btn.title = 'Switch to color-blind friendly mode';
+        btn.setAttribute('aria-label', 'Switch to color-blind friendly mode');
+      }
+    }
   },
 
   toggle() {
-    const next = this._current === 'light' ? 'dark' : 'light';
+    const next = this._current === 'standard' ? 'colorblind' : 'standard';
     this.apply(next);
     StorageHelper.set('tld_theme', next);
   },
 
   init() {
-    const saved = StorageHelper.get('tld_theme', 'light');
+    const saved = StorageHelper.get('tld_theme', 'standard');
     this.apply(saved);
     const btn = document.getElementById('theme-toggle');
     if (btn) btn.addEventListener('click', () => this.toggle());
@@ -221,6 +231,16 @@ const TaskModule = {
       if (errEl) { errEl.textContent = 'Task cannot be empty.'; errEl.classList.remove('hidden'); }
       return;
     }
+
+    // Duplicate limit: block a third task with the same description (case-insensitive)
+    const dupCount = this._tasks.filter(
+      t => t.description.toLowerCase() === trimmed.toLowerCase()
+    ).length;
+    if (dupCount >= 2) {
+      if (errEl) { errEl.textContent = 'You already have 2 tasks with this description.'; errEl.classList.remove('hidden'); }
+      return;
+    }
+
     if (errEl) errEl.classList.add('hidden');
 
     const task = { id: makeId('task'), description: trimmed, completed: false, createdAt: Date.now() };
@@ -232,6 +252,18 @@ const TaskModule = {
   editTask(id, newDesc) {
     const trimmed = newDesc.trim();
     if (!trimmed) return;
+
+    // Duplicate limit: count how many OTHER tasks already have this description
+    const dupCount = this._tasks.filter(
+      t => t.id !== id && t.description.toLowerCase() === trimmed.toLowerCase()
+    ).length;
+    if (dupCount >= 2) {
+      // Surface error via the global task-input-error element as a fallback
+      const errEl = document.getElementById('task-input-error');
+      if (errEl) { errEl.textContent = 'You already have 2 tasks with this description.'; errEl.classList.remove('hidden'); }
+      return;
+    }
+
     this._tasks = this._tasks.map(t => t.id === id ? { ...t, description: trimmed } : t);
     this.saveTasks(this._tasks);
     this.renderTasks(this._tasks);
