@@ -33,42 +33,6 @@ const StorageHelper = {
   },
 };
 
-/* ── ThemeModule ───────────────────────────────────────────── */
-
-const ThemeModule = {
-  _current: 'standard',
-
-  apply(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    this._current = theme;
-    const btn = document.getElementById('theme-toggle');
-    if (btn) {
-      if (theme === 'colorblind') {
-        btn.textContent = '👁 Standard';
-        btn.title = 'Switch to standard mode';
-        btn.setAttribute('aria-label', 'Switch to standard mode');
-      } else {
-        btn.textContent = '👁 Color-blind';
-        btn.title = 'Switch to color-blind friendly mode';
-        btn.setAttribute('aria-label', 'Switch to color-blind friendly mode');
-      }
-    }
-  },
-
-  toggle() {
-    const next = this._current === 'standard' ? 'colorblind' : 'standard';
-    this.apply(next);
-    StorageHelper.set('tld_theme', next);
-  },
-
-  init() {
-    const saved = StorageHelper.get('tld_theme', 'standard');
-    this.apply(saved);
-    const btn = document.getElementById('theme-toggle');
-    if (btn) btn.addEventListener('click', () => this.toggle());
-  },
-};
-
 /* ── GreetingModule ────────────────────────────────────────── */
 
 const GreetingModule = {
@@ -512,7 +476,6 @@ const QuickLinksModule = {
 /* ── Bootstrap ─────────────────────────────────────────────── */
 
 function init() {
-  ThemeModule.init();
   GreetingModule.init();
   TimerModule.init();
   TaskModule.init();

@@ -8,44 +8,21 @@
 /* ── 1. CSS Custom Properties (Design Tokens) ────────────── */
 
 :root {
-  /* Standard mode — default, comfortable for all users */
-  --bg:             #f5f5f5;
-  --surface:        #ffffff;
-  --text-primary:   #1a1a1a;
-  --text-secondary: #555555;
-  --accent:         #2563eb;
-  --border:         #e0e0e0;
+  /* Slate + Emerald palette */
+  --bg:             #1e2530;
+  --surface:        #252d3a;
+  --text-primary:   #f0f4f8;
+  --text-secondary: #8a9bb0;
+  --accent:         #10b981;
+  --border:         #2f3d50;
 
-  /* Additional tokens */
-  --accent-hover:   #1d4ed8;
-  --danger:         #dc2626;
-  --danger-hover:   #b91c1c;
-  --success:        #16a34a;
+  --accent-hover:   #059669;
+  --danger:         #fb7185;
+  --danger-hover:   #f43f5e;
+  --success:        #34d399;
   --radius:         0.5rem;
   --radius-sm:      0.25rem;
-  --shadow:         0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --transition:     150ms ease;
-}
-
-[data-theme="colorblind"] {
-  /* Color-blind friendly mode — visually distinct from standard.
-     Warm cream background + teal accent + orange danger.
-     Safe for deuteranopia, protanopia, and tritanopia.
-     No red/green used anywhere. WCAG AA contrast maintained. */
-  --bg:             #fdf6e3;
-  --surface:        #fffbf0;
-  --text-primary:   #1a1a0e;
-  --text-secondary: #5c5c40;
-  --accent:         #006d77;
-  --border:         #d4c89a;
-
-  --accent-hover:   #004f57;
-  --danger:         #e07500;
-  --danger-hover:   #b85e00;
-  --success:        #007090;
-  --radius:         0.5rem;
-  --radius-sm:      0.25rem;
-  --shadow:         0 1px 4px rgba(100, 80, 0, 0.12), 0 1px 2px rgba(100, 80, 0, 0.08);
+  --shadow:         0 1px 4px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
   --transition:     150ms ease;
 }
 
@@ -61,7 +38,7 @@
 
 html {
   /* Smooth theme transitions */
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
@@ -72,7 +49,7 @@ body {
   font-size: 14px;       /* Requirement 18.3 — minimum 14 px */
   line-height: 1.6;
   min-height: 100dvh;
-  transition: background-color 200ms ease, color 200ms ease;
+  transition: none;
 }
 
 /* Screen-reader-only utility */
